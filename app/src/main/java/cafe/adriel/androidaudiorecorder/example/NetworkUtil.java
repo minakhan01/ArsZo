@@ -177,6 +177,7 @@ public class NetworkUtil {
                     public void onResponse(String response) {
                         // response
                         Log.d("recognizeSpeech", response);
+                        SendTextQueryToServer(response);
                     }
                 },
                 new Response.ErrorListener()

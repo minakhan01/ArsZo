@@ -77,7 +77,7 @@ public class FileUtil {
             StreamHandler.closeOutputStream(outStream, "MP3");
             StreamHandler.closeInputStream(inStream, "MP3");
             Log.d("MP3", "playFile");
-            MediaUtil.INSTANCE().playZoFile();
+            MediaUtil.INSTANCE().playZo();
         }
     }
 

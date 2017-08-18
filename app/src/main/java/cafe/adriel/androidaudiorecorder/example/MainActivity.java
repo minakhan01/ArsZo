@@ -9,11 +9,14 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+
+import java.io.IOException;
 
 import cafe.adriel.androidaudiorecorder.AndroidAudioRecorder;
 import cafe.adriel.androidaudiorecorder.model.AudioChannel;
@@ -30,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             "/Download/";
     static final String ZO_OUT_FILE = "out.mp3";
     static final String USER_IN_FILE = "in.mp3";
-    static MediaPlayer sMediaPlayer;
+    private MediaPlayer mMediaPlayer;
 
     static AppState currentAppState = AppState.PLAYING_ZO_REPLY;
     String initialText = "Rhyme with me Zo";
@@ -46,10 +49,12 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setBackgroundDrawable(
                     new ColorDrawable(ContextCompat.getColor(this, R.color.colorPrimaryDark)));
         }
+        mMediaPlayer = new MediaPlayer();
+
+        MediaUtil.INSTANCE().setActivity(this);
 
         Util.requestPermission(this, Manifest.permission.RECORD_AUDIO);
         Util.requestPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        sMediaPlayer = new MediaPlayer();
         queue = Volley.newRequestQueue(this);
 
         NetworkUtil.INSTANCE().SendTextQueryToServer(initialText);
@@ -62,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_RECORD_AUDIO) {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(this, "Audio recorded successfully!", Toast.LENGTH_SHORT).show();
+                Log.d("onActivityResult", "hey, recording finished");
+                NetworkUtil.INSTANCE().recognizeSpeech();
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this, "Audio was not recorded", Toast.LENGTH_SHORT).show();
             }
@@ -71,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     public void recordAudio(View v) {
         AndroidAudioRecorder.with(this)
                 // Required
-                .setFilePath(AUDIO_FILE_PATH)
+                .setFilePath(DOWNLOAD_PATH + USER_IN_FILE)
                 .setColor(ContextCompat.getColor(this, R.color.recorder_bg))
                 .setRequestCode(REQUEST_RECORD_AUDIO)
 
@@ -85,4 +92,41 @@ public class MainActivity extends AppCompatActivity {
                 // Start recording
                 .record();
     }
+
+    public void playZoFile() {
+        MainActivity.currentAppState = AppState.PLAYING_ZO_REPLY;
+
+        try {
+            mMediaPlayer = new MediaPlayer();
+            mMediaPlayer.setDataSource(MainActivity.DOWNLOAD_PATH +
+                    MainActivity.ZO_OUT_FILE);
+            mMediaPlayer.prepare();
+
+            mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mMediaPlayer.start();
+                    Log.d("MP3", "mMediaPlayer.start()");
+                }
+            });
+        } catch (IOException e) {
+            Log.e("playFile", "prepare() failed");
+        }
+
+        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                stopPlaying();
+            }
+        });
+    }
+
+    private void stopPlaying() {
+        mMediaPlayer.stop();
+        mMediaPlayer.reset();
+        mMediaPlayer.release();
+        mMediaPlayer = null;
+
+    }
+
 }

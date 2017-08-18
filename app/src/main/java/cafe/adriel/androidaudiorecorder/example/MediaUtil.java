@@ -1,5 +1,6 @@
 package cafe.adriel.androidaudiorecorder.example;
 
+import android.app.Activity;
 import android.media.MediaPlayer;
 import android.util.Log;
 
@@ -10,6 +11,8 @@ import java.io.IOException;
  */
 
 public class MediaUtil {
+
+    private MainActivity mainActivity;
     private MediaUtil() {
     }
 
@@ -28,44 +31,11 @@ public class MediaUtil {
         return sInstance;
     }
 
-    public void recordUserFile() {
-        NetworkUtil.INSTANCE().recognizeSpeech();
+    public void setActivity(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
     }
 
-    public void playZoFile() {
-        MainActivity.currentAppState = AppState.PLAYING_ZO_REPLY;
-        final MediaPlayer mMediaPlayer = MainActivity.sMediaPlayer;
-
-        try {
-            mMediaPlayer.setDataSource(MainActivity.DOWNLOAD_PATH +
-                    MainActivity.ZO_OUT_FILE);
-            mMediaPlayer.prepare();
-
-            mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-                    mMediaPlayer.start();
-                    Log.d("MP3", "mMediaPlayer.start()");
-                }
-            });
-        } catch (IOException e) {
-            Log.e("playFile", "prepare() failed");
-        }
-
-        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                stopPlaying();
-            }
-        });
-    }
-
-    private void stopPlaying() {
-        MediaPlayer mMediaPlayer = MainActivity.sMediaPlayer;
-        mMediaPlayer.stop();
-        mMediaPlayer.reset();
-        mMediaPlayer.release();
-        mMediaPlayer = null;
-
+    public void playZo() {
+        mainActivity.playZoFile();
     }
 }
