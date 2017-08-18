@@ -55,7 +55,7 @@ public class AudioRecorderActivity extends AppCompatActivity
     private GLAudioVisualizationView visualizerView;
     private TextView statusView;
     private TextView timerView;
-    //private ImageButton restartView;
+    private ImageButton restartView;
     private ImageButton recordView;
     private ImageButton playView;
 
@@ -112,13 +112,13 @@ public class AudioRecorderActivity extends AppCompatActivity
         contentLayout = (RelativeLayout) findViewById(R.id.content);
         statusView = (TextView) findViewById(R.id.status);
         timerView = (TextView) findViewById(R.id.timer);
-        //restartView = (ImageButton) findViewById(R.id.restart);
+        restartView = (ImageButton) findViewById(R.id.restart);
         recordView = (ImageButton) findViewById(R.id.record);
         playView = (ImageButton) findViewById(R.id.play);
 
         contentLayout.setBackgroundColor(Util.getDarkerColor(color));
         contentLayout.addView(visualizerView, 0);
-        //restartView.setVisibility(View.INVISIBLE);
+        restartView.setVisibility(View.INVISIBLE);
         playView.setVisibility(View.INVISIBLE);
 
         if(Util.isBrightColor(color)) {
@@ -128,7 +128,7 @@ public class AudioRecorderActivity extends AppCompatActivity
                     .setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
             statusView.setTextColor(Color.BLACK);
             timerView.setTextColor(Color.BLACK);
-            //restartView.setColorFilter(Color.BLACK);
+            restartView.setColorFilter(Color.BLACK);
             recordView.setColorFilter(Color.BLACK);
             playView.setColorFilter(Color.BLACK);
         }
@@ -255,7 +255,7 @@ public class AudioRecorderActivity extends AppCompatActivity
         }
         saveMenuItem.setVisible(false);
         statusView.setVisibility(View.INVISIBLE);
-        //restartView.setVisibility(View.INVISIBLE);
+        restartView.setVisibility(View.INVISIBLE);
         playView.setVisibility(View.INVISIBLE);
         recordView.setImageResource(R.drawable.aar_ic_rec);
         timerView.setText("00:00:00");
@@ -268,7 +268,7 @@ public class AudioRecorderActivity extends AppCompatActivity
         saveMenuItem.setVisible(false);
         statusView.setText(R.string.aar_recording);
         statusView.setVisibility(View.VISIBLE);
-        //restartView.setVisibility(View.INVISIBLE);
+        restartView.setVisibility(View.INVISIBLE);
         playView.setVisibility(View.INVISIBLE);
         recordView.setImageResource(R.drawable.aar_ic_pause);
         playView.setImageResource(R.drawable.aar_ic_play);
@@ -295,7 +295,7 @@ public class AudioRecorderActivity extends AppCompatActivity
         }
         statusView.setText(R.string.aar_paused);
         statusView.setVisibility(View.VISIBLE);
-        //restartView.setVisibility(View.VISIBLE);
+        restartView.setVisibility(View.VISIBLE);
         playView.setVisibility(View.VISIBLE);
         recordView.setImageResource(R.drawable.aar_ic_rec);
         playView.setImageResource(R.drawable.aar_ic_play);
