@@ -89,6 +89,7 @@ public class NetworkUtil {
                             try {
                                 JSONObject obj = new JSONObject(response);
                                 String reply = obj.getString("TextReply");
+                                MainActivity.zoTextView.setText(reply);
                                 Log.d("REPLY", reply);
                                 SendTextToSpeechQuery(reply);
                             } catch (JSONException e2) {
@@ -177,6 +178,7 @@ public class NetworkUtil {
                     public void onResponse(String response) {
                         // response
                         Log.d("recognizeSpeech", response);
+                        MainActivity.userTextView.setText(response);
                         SendTextQueryToServer(response);
                     }
                 },

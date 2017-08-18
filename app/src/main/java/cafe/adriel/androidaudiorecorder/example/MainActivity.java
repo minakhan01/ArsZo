@@ -11,10 +11,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -39,16 +42,23 @@ public class MainActivity extends AppCompatActivity {
     String initialText = "Rhyme with me Zo";
     static RequestQueue queue;
 
+    static TextView userTextView;
+    static TextView zoTextView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setBackgroundDrawable(
-                    new ColorDrawable(ContextCompat.getColor(this, R.color.colorPrimaryDark)));
-        }
+//        if (getSupportActionBar() != null) {
+//            getSupportActionBar().setBackgroundDrawable(
+//                    new ColorDrawable(ContextCompat.getColor(this, R.color.colorPrimaryDark)));
+//        }
+
+        userTextView = (TextView) findViewById(R.id.user_text_field);
+        zoTextView = (TextView) findViewById(R.id.zo_text_field);
+
         mMediaPlayer = new MediaPlayer();
 
         MediaUtil.INSTANCE().setActivity(this);
@@ -79,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         AndroidAudioRecorder.with(this)
                 // Required
                 .setFilePath(DOWNLOAD_PATH + USER_IN_FILE)
-                .setColor(ContextCompat.getColor(this, R.color.recorder_bg))
+                .setColor(ContextCompat.getColor(this, R.color.green))
                 .setRequestCode(REQUEST_RECORD_AUDIO)
 
                 // Optional

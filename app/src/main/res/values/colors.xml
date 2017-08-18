@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <!--<color name="colorPrimary">#3F51B5</color>-->
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-
+    <color name="colorPrimary">#21BBEE</color>
     <color name="recorder_bg">#F4511E</color>
+    <color name="green">#FCEE1F</color>
+    <color name="grey">#5D5E5E</color>
 </resources>
