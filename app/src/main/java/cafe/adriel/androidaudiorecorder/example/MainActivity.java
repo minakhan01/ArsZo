@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         Util.requestPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         queue = Volley.newRequestQueue(this);
 
-        NetworkUtil.INSTANCE().SendTextQueryToServer(initialText);
+        NetworkUtil.INSTANCE().SendFirstTextQueryToServer(initialText);
 
     }
 

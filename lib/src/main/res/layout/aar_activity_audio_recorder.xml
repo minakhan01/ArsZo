@@ -51,8 +51,8 @@
             android:layout_marginTop="50dp"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/aar_ic_restart"
-            android:onClick="restartRecording"
+            android:src="@drawable/aar_ic_clear"
+            android:onClick="cancel"
             android:visibility="invisible"
             style="@style/Widget.AppCompat.Button.Borderless"/>
 
@@ -79,8 +79,8 @@
             android:layout_marginTop="50dp"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/aar_ic_play"
-            android:onClick="togglePlaying"
+            android:src="@drawable/aar_ic_check"
+            android:onClick="sendAudio"
             style="@style/Widget.AppCompat.Button.Borderless"/>
 
     </RelativeLayout>

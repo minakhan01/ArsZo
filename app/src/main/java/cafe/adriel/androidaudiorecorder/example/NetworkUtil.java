@@ -33,6 +33,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by minakhan on 8/17/17.
@@ -41,7 +42,7 @@ import java.util.Map;
 public class NetworkUtil {
 
     private static final String VOICE_OUTPUT_URL = "https://iceus.azure-api.net/intern/event/api/voice";
-    private static final String TEXT_URL = "https://iceus.azure-api.net/intern/event/api/chat";
+    private static final String TEXT_URL = "https://iceus.azure-api.net/intern/event/api/ars/electronica/chat";
     private static final String SPEECH_RECOGNITION_URL = "https://iceus.azure-api.net/intern/event/api/recognize";
 
     private static final String CLIENT_ID_TAG = "ClientId";
@@ -52,7 +53,7 @@ public class NetworkUtil {
     private static final String TEXT_MSG_TAG = "TextMessage";
 
     String clientID = "facebook";
-    String userID = "arsTechnicaDemoUser";
+    static String userID = "arsTechnicaDemoUser";
     String trueValue = "true";
     String subscriptionKey = "94fee08703ef40909632ec84a1104df8";
 
@@ -70,11 +71,71 @@ public class NetworkUtil {
             synchronized (NetworkUtil.class) {
                 if (sInstance == null) {
                     sInstance = new NetworkUtil();
+                    userID = UUID.randomUUID().toString();;
                 }
             }
         }
 
         return sInstance;
+    }
+
+    public void SendFirstTextQueryToServer(final String msg) {
+        StringRequest postRequest = new StringRequest(Request.Method.POST, TEXT_URL,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        Log.d("Response", response);
+                        if (response != null) {
+                            try {
+                                JSONObject obj = new JSONObject(response);
+                                String reply = obj.getString("TextReply");
+                                //MainActivity.zoTextView.setText(reply);
+                                Log.d("REPLY", reply);
+                                SendTextQueryToServer("Rhyme with me Zo");
+                            } catch (JSONException e2) {
+                                // returned data is not JSONObject?
+                                e2.printStackTrace();
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        // As of f605da3 the following should work
+                        NetworkResponse response = error.networkResponse;
+                        if (error instanceof ServerError && response != null) {
+
+                        }
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put(TEXT_MSG_TAG, msg);
+                params.put(USER_ID_TAG, userID);
+                params.put(CLIENT_ID_TAG, clientID);
+                params.put(IS_VOICE_TAG, trueValue);
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put(OCP_TRACE_TAG, trueValue);
+                params.put(OCP_KEY_TAG, subscriptionKey);
+
+                return params;
+            }
+        };
+        MainActivity.queue.add(postRequest);
     }
 
     public void SendTextQueryToServer(final String msg) {
