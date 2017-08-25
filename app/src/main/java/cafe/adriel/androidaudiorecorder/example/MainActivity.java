@@ -20,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import cafe.adriel.androidaudiorecorder.AndroidAudioRecorder;
 import cafe.adriel.androidaudiorecorder.model.AudioChannel;
@@ -45,11 +46,20 @@ public class MainActivity extends AppCompatActivity {
     static TextView userTextView;
     static TextView zoTextView;
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mMediaPlayer != null) {
+            mMediaPlayer.release();
+            mMediaPlayer = null;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        NetworkUtil.userID = UUID.randomUUID().toString();
 
 //        if (getSupportActionBar() != null) {
 //            getSupportActionBar().setBackgroundDrawable(

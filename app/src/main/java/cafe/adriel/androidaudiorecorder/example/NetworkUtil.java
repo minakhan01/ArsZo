@@ -71,7 +71,7 @@ public class NetworkUtil {
             synchronized (NetworkUtil.class) {
                 if (sInstance == null) {
                     sInstance = new NetworkUtil();
-                    userID = UUID.randomUUID().toString();;
+                    userID = UUID.randomUUID().toString();
                 }
             }
         }
