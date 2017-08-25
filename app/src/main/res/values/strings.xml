@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Microsoft Zo</string>
+    <string name="terms_string">By using this service, you agree to <a href="https://bit.ly/2cdeZUd">Microsoft Services Agreement</a>\n\nRead the <a href="https://bit.ly/2csDn3Y">Microsoft Privacy Statement</a> to learn about Microsoft’s commitment to privacy. </string>
 </resources>
