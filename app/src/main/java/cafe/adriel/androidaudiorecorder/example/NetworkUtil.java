@@ -121,7 +121,7 @@ public class NetworkUtil {
                 params.put(TEXT_MSG_TAG, msg);
                 params.put(USER_ID_TAG, userID);
                 params.put(CLIENT_ID_TAG, clientID);
-                params.put(IS_VOICE_TAG, "false");
+                params.put(IS_VOICE_TAG, trueValue);
 
                 return params;
             }
