@@ -176,12 +176,23 @@ public class MainActivity extends AppCompatActivity {
                 .get(RBLService.UUID_BLE_SHIELD_TX);
         Log.d("RBL", RBLService.UUID_BLE_SHIELD_TX.toString());
         byte b = 0x00;
-        byte[] tmp = msg.getBytes();
-        byte[] tx = new byte[tmp.length + 1];
+
+//        byte[] tmp = msg.getBytes();
+//        byte[] tx = new byte[tmp.length + 1];
+//        for (int i = 1; i < tmp.length + 1; i++) {
+//            tx[i] = tmp[i - 1];
+//        }
+        byte[] tx = new byte[2];
         tx[0] = b;
-        for (int i = 1; i < tmp.length + 1; i++) {
-            tx[i] = tmp[i - 1];
+
+        // Xin can send different bytes based on the sendblemessage string
+        if (msg.contains("start")) {
+            tx[1] = 0x00;
         }
+        else if (msg.contains("end")) {
+            tx[1] = 0x01;
+        }
+
 
         characteristic.setValue(tx);
         mBluetoothLeService.writeCharacteristic(characteristic);
