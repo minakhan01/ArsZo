@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
     private RBLService mBluetoothLeService;
     private Map<UUID, BluetoothGattCharacteristic> map = new HashMap<UUID, BluetoothGattCharacteristic>();
 
+    public static int modeReplyNumber = 7;
+    public static int mode = 7;
 
     @Override
     protected void onPause() {
@@ -92,9 +94,6 @@ public class MainActivity extends AppCompatActivity {
 
         mDeviceAddress = BLEInstance.deviceAddress;
         mDeviceName = BLEInstance.deviceName;
-
-//        getActionBar().setTitle(mDeviceName);
-//        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent gattServiceIntent = new Intent(this, RBLService.class);
         bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
@@ -175,22 +174,22 @@ public class MainActivity extends AppCompatActivity {
         BluetoothGattCharacteristic characteristic = map
                 .get(RBLService.UUID_BLE_SHIELD_TX);
         Log.d("RBL", RBLService.UUID_BLE_SHIELD_TX.toString());
-        byte b = 0x00;
+        byte b = 0x01;
 
 //        byte[] tmp = msg.getBytes();
 //        byte[] tx = new byte[tmp.length + 1];
 //        for (int i = 1; i < tmp.length + 1; i++) {
 //            tx[i] = tmp[i - 1];
 //        }
-        byte[] tx = new byte[2];
-        tx[0] = b;
-
+        byte[] tx = new byte[3];
+        tx[0] = Byte.parseByte(Integer.toHexString(mode), 16);
+        tx[1] = Byte.parseByte(Integer.toHexString(modeReplyNumber), 16);
         // Xin can send different bytes based on the sendblemessage string
         if (msg.contains("start")) {
-            tx[1] = 0x00;
+            tx[2] = 0x00;
         }
         else if (msg.contains("end")) {
-            tx[1] = 0x01;
+            tx[2] = 0x01;
         }
 
 
