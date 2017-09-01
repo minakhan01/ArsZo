@@ -12,12 +12,15 @@ import android.content.ServiceConnection;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.Environment;
 import android.os.IBinder;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +30,9 @@ import com.android.volley.toolbox.Volley;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -52,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
     String initialText = "Rhyme with me Zo";
     static RequestQueue queue;
 
-    static TextView userTextView;
-    static TextView zoTextView;
+//    static TextView userTextView;
+//    static TextView zoTextView;
 
     private String mDeviceName;
     private String mDeviceAddress;
@@ -64,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
     public static int modeReplyNumber = 7;
     public static int mode = 7;
 
+    private ListView listView;
+    private static List<ChatMessage> chatMessages;
+    private static ArrayAdapter<ChatMessage> adapter;
+    private static boolean isMine = false;
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -73,14 +83,41 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    static void zoMessage(String msg) {
+        isMine = true;
+        updateMessageList(msg);
+    }
+
+    static void userMessage(String msg) {
+        isMine = false;
+        updateMessageList(msg);
+    }
+
+    static void updateMessageList(String msg) {
+        Log.d("updateMessageList", "is mine: "+isMine+ "msg: "+msg);
+        boolean mineLocal = isMine;
+        ChatMessage chatMessage = new ChatMessage(msg, mineLocal);
+        chatMessages.add(chatMessage);
+        adapter.notifyDataSetChanged();
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         NetworkUtil.userID = UUID.randomUUID().toString();
 
-        userTextView = (TextView) findViewById(R.id.user_text_field);
-        zoTextView = (TextView) findViewById(R.id.zo_text_field);
+        chatMessages = new ArrayList<>();
+
+        listView = (ListView) findViewById(R.id.list_msg);
+
+        //set ListView adapter first
+        adapter = new MessageAdapter(this, R.layout.item_chat_left, chatMessages);
+        listView.setAdapter(adapter);
+
+//        userTextView = (TextView) findViewById(R.id.user_text_field);
+//        zoTextView = (TextView) findViewById(R.id.zo_text_field);
 
         mMediaPlayer = new MediaPlayer();
 
@@ -193,8 +230,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        characteristic.setValue(tx);
-        mBluetoothLeService.writeCharacteristic(characteristic);
+//        characteristic.setValue(tx);
+//        mBluetoothLeService.writeCharacteristic(characteristic);
     }
 
     private final ServiceConnection mServiceConnection = new ServiceConnection() {

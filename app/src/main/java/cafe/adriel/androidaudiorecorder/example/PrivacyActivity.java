@@ -186,7 +186,7 @@ public class PrivacyActivity extends AppCompatActivity {
         mediaPlayer = MediaPlayer.create(this, soundResources[random]);
         if (!mediaPlayer.isPlaying()) {
             mediaPlayer.start();
-            sendBLEMessage("start");
+            //sendBLEMessage("start");
         } else {
             mediaPlayer.stop();
         }
@@ -195,7 +195,7 @@ public class PrivacyActivity extends AppCompatActivity {
             public void onCompletion(MediaPlayer mp) {
                 mp.reset();
                 mp.release();
-                sendBLEMessage("start");
+                //sendBLEMessage("start");
             }
         });
     }

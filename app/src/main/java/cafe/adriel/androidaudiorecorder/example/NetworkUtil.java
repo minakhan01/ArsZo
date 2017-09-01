@@ -92,6 +92,7 @@ public class NetworkUtil {
                                 JSONObject obj = new JSONObject(response);
                                 String reply = obj.getString("TextReply");
                                 //MainActivity.zoTextView.setText(reply);
+                                MainActivity.zoMessage(reply);
                                 Log.d("REPLY", reply);
                                 SendTextQueryToServer("Rhyme with me Zo");
                             } catch (JSONException e2) {
@@ -159,7 +160,8 @@ public class NetworkUtil {
                                     MainActivity.mode = 2;
                                 }
                                 MainActivity.modeReplyNumber = responseStateInt;
-                                MainActivity.zoTextView.setText(reply);
+//                                MainActivity.zoTextView.setText(reply);
+                                MainActivity.zoMessage(reply);
                                 Log.d("REPLY", reply);
                                 SendTextToSpeechQuery(reply);
                             } catch (JSONException e2) {
@@ -248,7 +250,8 @@ public class NetworkUtil {
                     public void onResponse(String response) {
                         // response
                         Log.d("recognizeSpeech", response);
-                        MainActivity.userTextView.setText(response);
+//                        MainActivity.userTextView.setText(response);
+                        MainActivity.userMessage(response);
                         SendTextQueryToServer(response);
                     }
                 },
