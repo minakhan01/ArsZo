@@ -46,9 +46,10 @@ public class PrivacyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_privacy);
 
+        Intent mIntent = getIntent();
+        random = mIntent.getIntExtra("randomValue", 0);
+        Log.d("Privacy", random+" random");
         privacyText = (TextView) findViewById(R.id.privacy_terms);
-
-        managerOfSound();
 
         startChatButton = (Button) findViewById(R.id.start_chat_button);
         startChatButton.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +60,7 @@ public class PrivacyActivity extends AppCompatActivity {
             }
         });
         gattServiceIntent1 = new Intent(getApplicationContext(), RBLService.class);
+        managerOfSound();
     }
 
     @Override
@@ -152,11 +154,6 @@ public class PrivacyActivity extends AppCompatActivity {
             Log.d("RBL", RBLService.UUID_BLE_SHIELD_TX.toString());
             byte b = 0x00;
 
-//        byte[] tmp = msg.getBytes();
-//        byte[] tx = new byte[tmp.length + 1];
-//        for (int i = 1; i < tmp.length + 1; i++) {
-//            tx[i] = tmp[i - 1];
-//        }
             byte[] tx = new byte[3];
             tx[0] = b;
             tx[1] = Byte.parseByte(Integer.toHexString(random), 16);
@@ -175,8 +172,8 @@ public class PrivacyActivity extends AppCompatActivity {
 
     private void managerOfSound() {
 
-        Random r = new Random();
-        random = r.nextInt(soundResources.length - 1);
+//        Random r = new Random();
+//        random = r.nextInt(soundResources.length - 1);
 
         mediaPlayer = MediaPlayer.create(this, soundResources[random]);
         if (!mediaPlayer.isPlaying()) {
@@ -190,7 +187,7 @@ public class PrivacyActivity extends AppCompatActivity {
             public void onCompletion(MediaPlayer mp) {
                 mp.reset();
                 mp.release();
-                sendBLEMessage("start");
+                sendBLEMessage("end");
             }
         });
     }

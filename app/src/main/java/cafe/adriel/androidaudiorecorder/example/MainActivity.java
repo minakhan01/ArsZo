@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        unregisterReceiver(mGattUpdateReceiver);
+//        unbindService(mServiceConnection);
         if (mMediaPlayer != null) {
             mMediaPlayer.release();
             mMediaPlayer = null;

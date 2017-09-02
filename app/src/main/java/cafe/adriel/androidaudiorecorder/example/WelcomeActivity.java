@@ -40,6 +40,10 @@ public class WelcomeActivity extends AppCompatActivity {
     private static final int REQUEST_ENABLE_BT = 1;
     private static final long SCAN_PERIOD = 3000;
 
+    int random;
+    int[] soundResources = new int[] {R.raw.one, R.raw.two, R.raw.three, R.raw.four, R.raw.five};
+
+
     Intent gattServiceIntent1;
     private RBLService mBluetoothLeService;
     private Map<UUID, BluetoothGattCharacteristic> map = new HashMap<UUID, BluetoothGattCharacteristic>();
@@ -67,17 +71,41 @@ public class WelcomeActivity extends AppCompatActivity {
         }
     };
 
+    private void sendBLEMessage(String msg) {
+        BluetoothGattCharacteristic characteristic = BLEInstance.INSTANCE().bluetoothGattCharacteristic;
+        Log.d("RBL", RBLService.UUID_BLE_SHIELD_TX.toString());
+        byte b = 0x00;
+
+        byte[] tx = new byte[3];
+        tx[0] = b;
+        tx[1] = Byte.parseByte(Integer.toHexString(random), 16);
+        // Xin can send different bytes based on the sendblemessage string
+        if (msg.contains("start")) {
+            tx[2] = 0x00;
+        } else if (msg.contains("end")) {
+            tx[2] = 0x01;
+        }
+
+        characteristic.setValue(tx);
+        BLEInstance.INSTANCE().mBluetoothLeService.writeCharacteristic(characteristic);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
+        Random r = new Random();
+        random = r.nextInt(soundResources.length - 1);
 
         bleStuff();
         startChatButton = (Button) findViewById(R.id.start_chat_button);
         startChatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sendBLEMessage("start");
                 Intent myIntent = new Intent(WelcomeActivity.this, PrivacyActivity.class);
+                myIntent.putExtra("randomValue", random);
                 WelcomeActivity.this.startActivity(myIntent);
             }
         });
