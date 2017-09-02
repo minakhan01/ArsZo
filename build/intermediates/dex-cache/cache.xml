@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/exploded-aar/ArsZo/lib/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="15894ba81afddb192e65b469bdf8bd7e84c52307">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/ArsZo-lib-unspecified_de0f51fa104257a1649aa604baac482b37351df2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.1_d18236a48484e3398bff4db26c71bf354c2773b3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_3605d90281c552127ba73c1bef159808e574b169.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_94da32f13fc40292c4524cbf6aa5dcdb09f5fadf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/exploded-aar/com.android.volley/volley/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/com.android.volley-volley-1.0.0_a2ec9079f83559aa727d7e8163c15d6eba8b4bcd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.1_a63c1d8238ba38d431db01ceb016afa5e3fae27b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.1_84e6f17730ee22d3ab2bb7cd510f82e99074cd82.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.1_f42cf062220583260a46dbad663fa1d4033a3bb7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.1_eef0218f727558f743e0ae801ca68358b8e4dbce.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.1_3b43563536023032a94e613927984630df90674a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_424e0d90a7d4cc1ffaef800a3228ec99b0e67f86.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.1_08f0e627840702c39094c0e0eaa5b2dd4085552b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.1_80bb22a4680c00f84e808fa4eeeb33358e612f70.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.1_f3f115f323268ac337d0c6c2ceee18070b5e8734.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/exploded-aar/com.cleveroad/audiovisualization/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="3bfdddd4e47dab6e743f217d2ddde7e6cc5db0ee">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/com.cleveroad-audiovisualization-1.0.0_e6c1e779c214024843d489900ba2f06a672ba03f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/exploded-aar/com.kailashdabhi/om-recorder/1.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="cc612fa2610b0741f55190e7bc73034144873adb">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/com.kailashdabhi-om-recorder-1.1.0_1625222bd62ad2897fa81a46e3cadc684c18c60a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_4206d4e23f682ebc0b7ab31cf4e5d50ae915d403.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_15ca55725750520626f70e1e0b7713ff30c723bd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="/Users/minakhan/Desktop/github/ArsZo/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.1_75ef13c4bd444808973a31497d2a765a60150a4d.jar" />
+    </item>
+
+</items>

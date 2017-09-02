@@ -150,6 +150,16 @@ public class NetworkUtil {
                             try {
                                 JSONObject obj = new JSONObject(response);
                                 String reply = obj.getString("TextReply");
+                                String skillLevel = obj.getString("TextReplySource");
+                                int responseStateInt = StringUtil.INSTANCE().findReplyResponseInt(reply);
+                                if (skillLevel.toLowerCase().contains(("Skill").toLowerCase())) {
+                                    MainActivity.mode = 1;
+                                }
+                                else {
+                                    MainActivity.mode = 2;
+                                }
+                                MainActivity.modeReplyNumber = responseStateInt;
+                                Log.d("REPLY", "responseStateInt: "+responseStateInt);
                                 MainActivity.zoTextView.setText(reply);
                                 Log.d("REPLY", reply);
                                 SendTextToSpeechQuery(reply);
