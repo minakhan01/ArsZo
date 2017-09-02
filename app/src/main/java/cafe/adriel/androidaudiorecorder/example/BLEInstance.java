@@ -1,5 +1,7 @@
 package cafe.adriel.androidaudiorecorder.example;
 
+import android.bluetooth.BluetoothGattCharacteristic;
+
 import java.util.UUID;
 
 /**
@@ -10,6 +12,8 @@ public class BLEInstance {
 
     public static String deviceName;
     public static String deviceAddress;
+    public static BluetoothGattCharacteristic bluetoothGattCharacteristic;
+    public static RBLService mBluetoothLeService;
 
     private BLEInstance() {
     }

@@ -174,6 +174,8 @@ public class RBLService extends Service {
             return false;
         }
 
+        connect(BLEInstance.INSTANCE().deviceAddress);
+
         return true;
     }
 
@@ -223,6 +225,12 @@ public class RBLService extends Service {
         mBluetoothDeviceAddress = address;
 
         return true;
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        initialize();
+        return START_STICKY;
     }
 
     /**

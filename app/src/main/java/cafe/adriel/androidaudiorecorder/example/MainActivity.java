@@ -93,8 +93,8 @@ public class MainActivity extends AppCompatActivity {
 
         NetworkUtil.INSTANCE().SendFirstTextQueryToServer(initialText);
 
-        mDeviceAddress = BLEInstance.deviceAddress;
-        mDeviceName = BLEInstance.deviceName;
+        mDeviceAddress = BLEInstance.INSTANCE().deviceAddress;
+        mDeviceName = BLEInstance.INSTANCE().deviceName;
 
 //        getActionBar().setTitle(mDeviceName);
 //        getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -175,8 +175,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sendBLEMessage(String msg) {
-        BluetoothGattCharacteristic characteristic = map
-                .get(RBLService.UUID_BLE_SHIELD_TX);
+        BluetoothGattCharacteristic characteristic = BLEInstance.INSTANCE().bluetoothGattCharacteristic;
+
         Log.d("RBL", RBLService.UUID_BLE_SHIELD_TX.toString());
         byte b = 0x00;
         byte[] tx = new byte[3];
@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         characteristic.setValue(tx);
-        mBluetoothLeService.writeCharacteristic(characteristic);
+        BLEInstance.INSTANCE().mBluetoothLeService.writeCharacteristic(characteristic);
     }
 
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
