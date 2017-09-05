@@ -8,14 +8,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.cleveroad.audiovisualization.DbmHandler;
+import com.cleveroad.audiovisualization.GLAudioVisualizationView;
 
 import org.w3c.dom.Text;
 
@@ -23,6 +33,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
+
+import cafe.adriel.androidaudiorecorder.*;
+import cafe.adriel.androidaudiorecorder.Util;
 
 /**
  * Created by minakhan on 8/24/17.
@@ -37,6 +50,11 @@ public class PrivacyActivity extends AppCompatActivity {
     int[] soundResources = new int[] {R.raw.one, R.raw.two, R.raw.three, R.raw.four, R.raw.five};
     int random;
 
+    private RelativeLayout contentLayout;
+    private LinearLayout mLinearLayout;
+    private GLAudioVisualizationView visualizerView;
+    private TextView mTextView;
+
     Intent gattServiceIntent1;
     private RBLService mBluetoothLeService;
     private Map<UUID, BluetoothGattCharacteristic> map = new HashMap<UUID, BluetoothGattCharacteristic>();
@@ -45,6 +63,27 @@ public class PrivacyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_privacy);
+
+        visualizerView = new GLAudioVisualizationView.Builder(this)
+                .setLayersCount(1)
+                .setWavesCount(6)
+                .setWavesHeight(cafe.adriel.androidaudiorecorder.R.dimen.aar_wave_height)
+                .setWavesFooterHeight(cafe.adriel.androidaudiorecorder.R.dimen.aar_footer_height)
+                .setBubblesPerLayer(20)
+                .setBubblesSize(cafe.adriel.androidaudiorecorder.R.dimen.aar_bubble_size)
+                .setBubblesRandomizeSize(true)
+                .setBackgroundColor(Color.WHITE)
+                .setLayerColors(new int[]{ContextCompat.getColor(this, R.color.green)
+                        , Color.BLACK})
+                .build();
+
+        contentLayout = (RelativeLayout) findViewById(cafe.adriel.androidaudiorecorder.R.id.content);
+        mLinearLayout = (LinearLayout) findViewById(R.id.terms_button);
+//        mLinearLayout.setVisibility(View.INVISIBLE);
+        contentLayout.setBackgroundColor(Color.WHITE);
+        contentLayout.addView(visualizerView, 0);
+        mTextView = (TextView) findViewById(R.id.privacy_terms);
+        mTextView.setVisibility(View.INVISIBLE);
 
         Intent mIntent = getIntent();
         random = mIntent.getIntExtra("randomValue", 0);
@@ -61,6 +100,13 @@ public class PrivacyActivity extends AppCompatActivity {
         });
         gattServiceIntent1 = new Intent(getApplicationContext(), RBLService.class);
         managerOfSound();
+
+        AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(3000);
+        anim.setStartOffset(5000);
+        anim.setFillAfter(true);
+        mTextView.startAnimation(anim);
+        mTextView.setText(R.string.terms_string);
     }
 
     @Override
@@ -179,15 +225,36 @@ public class PrivacyActivity extends AppCompatActivity {
         if (!mediaPlayer.isPlaying()) {
             mediaPlayer.start();
             sendBLEMessage("start");
+            Log.d("MEDIA", "start");
         } else {
             mediaPlayer.stop();
         }
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
+
+                visualizerView.setVisibility(View.INVISIBLE);
+                mLinearLayout.setVisibility(View.VISIBLE);
+                Log.d("MEDIA", "stop");
                 mp.reset();
                 mp.release();
                 sendBLEMessage("end");
+            }
+        });
+        visualizerView.linkTo(DbmHandler.Factory.newVisualizerHandler(this, mediaPlayer));
+        visualizerView.post(new Runnable() {
+            @Override
+            public void run() {
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+
+                        Log.d("MEDIA", "stop");
+                        mp.reset();
+                        mp.release();
+                        sendBLEMessage("end");
+                    }
+                });
             }
         });
     }
