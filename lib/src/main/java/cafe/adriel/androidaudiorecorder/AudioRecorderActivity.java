@@ -137,9 +137,9 @@ public class AudioRecorderActivity extends AppCompatActivity
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        if(autoStart && !isRecording){
+//        if(autoStart && !isRecording){
             toggleRecording(null);
-        }
+//        }
     }
 
     @Override

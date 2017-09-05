@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 .setFilePath(DOWNLOAD_PATH + USER_IN_FILE)
                 .setColor(ContextCompat.getColor(this, R.color.green))
                 .setRequestCode(REQUEST_RECORD_AUDIO)
+                .setAutoStart(true)
 
                 // Optional
                 .setSource(AudioSource.MIC)
