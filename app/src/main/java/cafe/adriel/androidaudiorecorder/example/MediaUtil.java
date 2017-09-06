@@ -38,4 +38,8 @@ public class MediaUtil {
     public void playZo() {
         mainActivity.playZoFile();
     }
+
+    public void playZoNoReply() {
+        mainActivity.playZoCantHearFile();
+    }
 }

@@ -260,14 +260,14 @@ public class NetworkUtil {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("TIMEOUT", "Xin some ERROR!");
-
+                        MediaUtil.INSTANCE().playZoNoReply();
                         if (error.networkResponse == null) {
                             if (error.getClass().equals(TimeoutError.class)) {
                                 // Show timeout error message
                                 Log.d("TIMEOUT", "Xin look HEREEEEE!");
                             }
                         }
-                        
+
                         // As of f605da3 the following should work
                         NetworkResponse response = error.networkResponse;
                         if (error instanceof ServerError && response != null) {

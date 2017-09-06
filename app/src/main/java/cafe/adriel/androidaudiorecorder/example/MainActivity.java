@@ -180,6 +180,33 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void playZoCantHearFile() {
+        MainActivity.currentAppState = AppState.PLAYING_ZO_REPLY;
+
+        try {
+            sendBLEMessage("start");
+            mMediaPlayer = MediaPlayer.create(this, R.raw.ZoCantHear1);
+            mMediaPlayer.prepare();
+
+            mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mMediaPlayer.start();
+                    Log.d("MP3", "mMediaPlayer.start()");
+                }
+            });
+        } catch (IOException e) {
+            Log.e("playFile", "prepare() failed");
+        }
+
+        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                stopPlaying();
+            }
+        });
+    }
+
     private void stopPlaying() {
         mMediaPlayer.stop();
         mMediaPlayer.reset();
