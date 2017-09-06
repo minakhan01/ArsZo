@@ -183,7 +183,11 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             sendBLEMessage("start");
-            mMediaPlayer.release();
+            // Xin, uncomment these 3 lines if there's an error
+//            mMediaPlayer.stop();
+//            mMediaPlayer.reset();
+//            mMediaPlayer.release();
+            mMediaPlayer = new MediaPlayer();
             mMediaPlayer = MediaPlayer.create(this, R.raw.cant_hear1);
             mMediaPlayer.prepare();
 
