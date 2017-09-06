@@ -1,7 +1,5 @@
 package cafe.adriel.androidaudiorecorder.example;
 
-import android.app.Dialog;
-import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattCharacteristic;
@@ -14,11 +12,15 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
-import android.media.MediaPlayer;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -93,7 +95,16 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_welcome);
+        ActionBar bar = getSupportActionBar();
+        bar.setDisplayShowCustomEnabled(true);
+        bar.setDisplayShowTitleEnabled(false);
+        bar.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        LayoutInflater inflator = (LayoutInflater) this .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflator.inflate(R.layout.my_custom_title, null);
+        bar.setCustomView(v);
 
         Random r = new Random();
         random = r.nextInt(soundResources.length - 1);

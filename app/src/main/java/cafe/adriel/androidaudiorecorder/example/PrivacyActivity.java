@@ -9,13 +9,16 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -62,6 +65,16 @@ public class PrivacyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ActionBar bar = getSupportActionBar();
+        bar.setDisplayShowCustomEnabled(true);
+        bar.setDisplayShowTitleEnabled(false);
+        bar.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        LayoutInflater inflator = (LayoutInflater) this .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflator.inflate(R.layout.my_custom_title, null);
+        bar.setCustomView(v);
+
         setContentView(R.layout.activity_privacy);
 
         visualizerView = new GLAudioVisualizationView.Builder(this)

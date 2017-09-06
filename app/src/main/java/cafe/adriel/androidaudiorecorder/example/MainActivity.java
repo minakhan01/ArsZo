@@ -15,8 +15,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -79,6 +81,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ActionBar bar = getSupportActionBar();
+        bar.setDisplayShowCustomEnabled(true);
+        bar.setDisplayShowTitleEnabled(false);
+        bar.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        LayoutInflater inflator = (LayoutInflater) this .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflator.inflate(R.layout.my_custom_title, null);
+        bar.setCustomView(v);
+
         setContentView(R.layout.activity_main);
         NetworkUtil.userID = UUID.randomUUID().toString();
 
