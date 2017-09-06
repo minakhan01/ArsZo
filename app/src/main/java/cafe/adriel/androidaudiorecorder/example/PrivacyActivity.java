@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -60,6 +61,7 @@ public class PrivacyActivity extends AppCompatActivity {
 
     Intent gattServiceIntent1;
     private RBLService mBluetoothLeService;
+    ImageView mImageView;
     private Map<UUID, BluetoothGattCharacteristic> map = new HashMap<UUID, BluetoothGattCharacteristic>();
 
     @Override
@@ -96,6 +98,7 @@ public class PrivacyActivity extends AppCompatActivity {
         contentLayout.setBackgroundColor(Color.WHITE);
         contentLayout.addView(visualizerView, 0);
         mTextView = (TextView) findViewById(R.id.privacy_terms);
+        mImageView = (ImageView) findViewById(R.id.image);
         mTextView.setVisibility(View.INVISIBLE);
 
         Intent mIntent = getIntent();
@@ -120,6 +123,13 @@ public class PrivacyActivity extends AppCompatActivity {
         anim.setFillAfter(true);
         mTextView.startAnimation(anim);
         mTextView.setText(R.string.terms_string);
+
+        AlphaAnimation anim1 = new AlphaAnimation(0.0f, 1.0f);
+        anim1.setDuration(3000);
+        anim1.setStartOffset(5000);
+        anim1.setFillAfter(true);
+        mImageView.startAnimation(anim);
+//        mImageView.setImageDrawable(R.string.terms_string);
     }
 
     @Override
