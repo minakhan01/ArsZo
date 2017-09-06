@@ -259,7 +259,15 @@ public class NetworkUtil {
                 {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Log.d("TIMEOUT", "Xin some ERROR!");
 
+                        if (error.networkResponse == null) {
+                            if (error.getClass().equals(TimeoutError.class)) {
+                                // Show timeout error message
+                                Log.d("TIMEOUT", "Xin look HEREEEEE!");
+                            }
+                        }
+                        
                         // As of f605da3 the following should work
                         NetworkResponse response = error.networkResponse;
                         if (error instanceof ServerError && response != null) {
@@ -270,13 +278,6 @@ public class NetworkUtil {
                             } catch (UnsupportedEncodingException e1) {
                                 // Couldn't properly decode data to string
                                 e1.printStackTrace();
-                            }
-                        }
-
-                        if (error.networkResponse == null) {
-                            if (error.getClass().equals(TimeoutError.class)) {
-                                // Show timeout error message
-                                Log.d("TIMEOUT", "Xin look HEREEEEE!");
                             }
                         }
 
