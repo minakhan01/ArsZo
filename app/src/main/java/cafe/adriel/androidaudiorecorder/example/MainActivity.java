@@ -11,6 +11,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
@@ -180,15 +181,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void playZoCantHearFile() {
         MainActivity.currentAppState = AppState.PLAYING_ZO_REPLY;
-
+        String filename = "android.resource://" + this.getPackageName() + "/raw/cant_hear1";
         try {
-            sendBLEMessage("start");
-            // Xin, uncomment these 3 lines if there's an error
-//            mMediaPlayer.stop();
-//            mMediaPlayer.reset();
-//            mMediaPlayer.release();
             mMediaPlayer = new MediaPlayer();
-            mMediaPlayer = MediaPlayer.create(this, R.raw.cant_hear1);
+            sendBLEMessage("start");
+            mMediaPlayer.setDataSource(this, Uri.parse(filename));
             mMediaPlayer.prepare();
 
             mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
