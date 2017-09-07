@@ -40,6 +40,6 @@ public class MediaUtil {
     }
 
     public void playZoNoReply() {
-        mainActivity.playZoCantHearFile();
+//        mainActivity.playZoCantHearFile();
     }
 }
